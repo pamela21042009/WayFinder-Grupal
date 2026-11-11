@@ -1,0 +1,7 @@
+{
+  "name": "wayfinder-grupal",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
