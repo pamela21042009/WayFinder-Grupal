@@ -2,6 +2,14 @@
 
 Aplicación creada con Ionic y Angular. El proyecto utiliza Angular Standalone y Capacitor para facilitar la futura ejecución en Android e iOS.
 
+## ¿Qué es WayFinder?
+
+WayFinder es una red social para difundir casos de personas desaparecidas y un espacio privado para que el equipo de cada caso organice la información recibida. La primera versión es un prototipo académico: se debe usar únicamente con casos ficticios o autorizados, nunca para publicar desapariciones reales.
+
+Consulta [docs/PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md) para conocer el propósito, los usuarios, las funciones, los límites y las reglas de privacidad del producto. Las personas que trabajen con asistentes de código también deben leer [AGENTS.md](AGENTS.md).
+
+Para revisar los cinco ajustes recomendados a las pantallas y su orden de implementación, consulta [WayFinder_Ajustes_Boceto.pdf](docs/WayFinder_Ajustes_Boceto.pdf).
+
 ## Requisitos
 
 - Node.js `24.16.0` (Angular 22 requiere Node.js `24.15.0` o posterior en la rama 24).
@@ -36,6 +44,18 @@ npm install -g npm@11.13.0
 | TypeScript | `6.0.x` |
 
 Las dependencias de la aplicación se instalan desde `package-lock.json`. Angular CLI ya está incluido localmente; no instales Angular CLI globalmente.
+
+## Dependencias adicionales e integraciones
+
+En esta sección registramos las bibliotecas agregadas para integraciones, para que todo el equipo sepa qué instalar y por qué.
+
+| Paquete | Uso | Estado | Instalación |
+| --- | --- | --- | --- |
+| `@supabase/supabase-js` | Cliente oficial para conectar la app con Supabase (Auth, base de datos, Storage y otros servicios). | Instalado y registrado en `package.json` y `package-lock.json`. | `npm install @supabase/supabase-js` |
+
+Cuando el paquete se agregue al proyecto, `npm install` actualizará `package.json` y `package-lock.json`. Después, cada integrante puede ejecutar `npm ci` desde la raíz para instalar las versiones registradas. No hace falta ejecutar el comando de instalación individual si el paquete ya aparece en esos archivos.
+
+La URL del proyecto y la clave publicable se configuran en `src/environments/environment.ts` para desarrollo y en `src/environments/environment.prod.ts` para compilaciones de producción. La clave publicable puede formar parte de la app cliente; las claves secretas nunca deben incluirse en código del frontend.
 
 ## Instalación
 

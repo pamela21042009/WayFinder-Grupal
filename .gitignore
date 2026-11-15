@@ -13,6 +13,12 @@ $RECYCLE.BIN/
 log.txt
 
 .env
+docs/
+!docs/
+docs/*
+!docs/PROJECT_OVERVIEW.md
+!docs/WayFinder_Ajustes_Boceto.pdf
+!docs/PLAN_REPARTO_FUNCIONAL.pdf
 
 /.sourcemaps
 /.versions
