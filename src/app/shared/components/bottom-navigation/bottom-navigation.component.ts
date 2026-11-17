@@ -6,7 +6,7 @@ import { add, compass, compassOutline, home, mailOutline, personOutline } from '
 
 addIcons({ add, compass, compassOutline, home, mailOutline, personOutline });
 
-export type MainNavigationSection = 'home' | 'explore';
+export type MainNavigationSection = 'home' | 'explore' | 'none';
 
 @Component({
   selector: 'app-bottom-navigation',

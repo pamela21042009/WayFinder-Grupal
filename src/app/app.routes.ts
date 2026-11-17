@@ -16,6 +16,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/explore/pages/explore.page').then((m) => m.ExplorePage),
   },
   {
+    path: 'cases/:id',
+    loadComponent: () => import('./features/case-detail/pages/case-detail.page').then((m) => m.CaseDetailPage),
+  },
+  {
     path: '',
     redirectTo: 'auth/login',
     pathMatch: 'full',

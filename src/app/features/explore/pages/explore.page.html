@@ -89,10 +89,12 @@
 
         @for (item of filteredCases; track item.id) {
           <article class="featured-case">
-            <img [src]="item.image" [alt]="'Fotografía de ' + item.personName" loading="lazy" />
+            <a class="featured-case-image-link" [routerLink]="['/cases', item.id]" [attr.aria-label]="'Ver el caso de ' + item.personName">
+              <img [src]="item.image" [alt]="'Fotografía de ' + item.personName" loading="lazy" />
+            </a>
             <div class="featured-case-info">
               <span class="case-status"><ion-icon name="alert-circle-outline" aria-hidden="true"></ion-icon>{{ item.status }}</span>
-              <h3>{{ item.personName }}</h3>
+              <h3><a [routerLink]="['/cases', item.id]">{{ item.personName }}</a></h3>
               <div class="featured-meta">
                 <span><ion-icon name="location-outline" aria-hidden="true"></ion-icon>{{ item.city }}</span>
                 <span><ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>{{ item.reported }}</span>

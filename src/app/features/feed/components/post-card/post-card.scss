@@ -96,6 +96,12 @@
   object-fit: cover;
 }
 
+.case-image-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .case-details {
   min-width: 0;
   padding: 0 2px;
@@ -108,6 +114,11 @@
   font-weight: 750;
   letter-spacing: -0.04em;
   line-height: 1.12;
+}
+
+.case-details h2 a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .case-meta {

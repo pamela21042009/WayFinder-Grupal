@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { IonIcon } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import {
@@ -31,7 +32,7 @@ addIcons({
 @Component({
   selector: 'app-post-card',
   templateUrl: './post-card.component.html',
-  imports: [IonIcon],
+  imports: [IonIcon, RouterLink],
 })
 export class PostCardComponent {
   @Input({ required: true }) post!: FeedPost;
