@@ -38,7 +38,7 @@
               <strong>{{ post.author }}</strong>
               <span>{{ post.published }} <span aria-hidden="true">·</span> <ion-icon name="globe-outline" aria-label="Público"></ion-icon></span>
             </div>
-            <button class="icon-action post-menu" type="button" [attr.aria-label]="'Más opciones para la publicación de ' + post.subject" (click)="showToast('Las opciones de la publicación estarán disponibles próximamente.')">
+            <button class="icon-action post-menu" type="button" [attr.aria-label]="'Denunciar la publicación de ' + post.subject" routerLink="/reports/complaint/new">
               <ion-icon name="ellipsis-horizontal" aria-hidden="true"></ion-icon>
             </button>
           </header>
@@ -68,7 +68,7 @@
             <button class="share-action" type="button" aria-label="Compartir caso" (click)="sharePost(post)">
               <ion-icon name="share-social-outline" aria-hidden="true"></ion-icon><span>Compartir</span>
             </button>
-            <button class="information-action" type="button" (click)="showToast('El formulario para aportar información aún no está disponible.')">
+            <button class="information-action" type="button" routerLink="/reports/new">
               <ion-icon name="information-circle" aria-hidden="true"></ion-icon><span>Tengo información</span>
             </button>
           </div>
@@ -101,7 +101,7 @@
   <button class="bottom-nav-item create-nav" type="button" aria-label="Crear publicación" (click)="showToast('La creación de publicaciones estará disponible próximamente.')">
     <span class="create-button"><ion-icon name="add" aria-hidden="true"></ion-icon></span><span>Crear</span>
   </button>
-  <button class="bottom-nav-item" type="button" (click)="showToast('Avisos estará disponible próximamente.')">
+  <button class="bottom-nav-item" type="button" routerLink="/my-cases">
     <ion-icon name="mail-outline" aria-hidden="true"></ion-icon><span>Avisos</span>
   </button>
   <button class="bottom-nav-item" type="button" (click)="showToast('Perfil estará disponible próximamente.')">
