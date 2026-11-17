@@ -1,0 +1,548 @@
+:host {
+  display: block;
+  min-height: 100%;
+}
+
+.auth-content {
+  --background: var(--app-background);
+  --color: var(--app-text);
+}
+
+.auth-layout {
+  display: grid;
+  min-height: 100%;
+  padding: clamp(20px, 5vw, 64px);
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 10% 10%, rgb(234 243 235 / 85%), transparent 38%),
+    var(--app-background);
+}
+
+.auth-card {
+  width: min(100%, 520px);
+  padding: clamp(30px, 6vw, 54px);
+  border: 1px solid var(--app-border);
+  border-radius: 34px;
+  background: var(--app-surface);
+  box-shadow: 0 24px 70px rgb(31 65 43 / 9%);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 auto 36px;
+  color: var(--ion-color-primary);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--ion-color-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.auth-card h1 {
+  margin: 0;
+  color: var(--app-text);
+  font-size: clamp(30px, 6.6vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.14;
+}
+
+.forgot-card .auth-symbol {
+  width: 54px;
+  height: 54px;
+  margin: 0 0 24px;
+  border-radius: 17px;
+  font-size: 25px;
+}
+
+.forgot-card h1 {
+  max-width: 440px;
+  font-size: clamp(29px, 5vw, 36px);
+  letter-spacing: -0.04em;
+  line-height: 1.16;
+}
+
+.forgot-card .intro {
+  max-width: 440px;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.check-email-card,
+.confirm-card {
+  text-align: center;
+}
+
+.check-email-card .eyebrow,
+.confirm-card .eyebrow {
+  margin-bottom: 8px;
+}
+
+.check-email-card h1,
+.confirm-card h1 {
+  font-size: clamp(28px, 5.5vw, 36px);
+  letter-spacing: -0.04em;
+}
+
+.check-email-card .intro,
+.confirm-card .intro {
+  max-width: 420px;
+  margin: 12px auto 24px;
+}
+
+.email-destination {
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--app-border);
+  border-radius: 16px;
+  background: var(--app-surface-soft);
+  color: var(--app-text-muted);
+  font-size: 13px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.email-destination strong {
+  display: block;
+  margin-top: 3px;
+  color: var(--app-text);
+  font-weight: 650;
+}
+
+.check-email-card .check-email-help {
+  margin: 16px 0 0;
+  color: var(--app-text-muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.intro {
+  margin: 12px 0 28px;
+  color: var(--app-text-muted);
+  line-height: 1.65;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.field label {
+  color: var(--app-text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.input-shell {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 15px;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  background: #f4f8f4;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.input-shell:focus-within {
+  border-color: var(--ion-color-primary);
+  box-shadow: 0 0 0 3px rgb(47 112 71 / 12%);
+}
+
+.input-shell > ion-icon {
+  flex: 0 0 auto;
+  color: var(--ion-color-primary);
+  font-size: 19px;
+}
+
+.input-shell ion-input {
+  --padding-start: 0;
+  --padding-end: 0;
+  --placeholder-color: #929a93;
+  font-size: 14px;
+}
+
+.visibility-toggle {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--app-text-muted);
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.form-error {
+  margin: 8px 0;
+  color: #a33d34;
+  font-size: 12px;
+}
+
+.form-notice,
+.form-success {
+  margin: 18px 0;
+  padding: 13px 15px;
+  border: 1px solid #c9dfcd;
+  border-radius: 13px;
+  background: #f0f7f0;
+  color: #326b43;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.form-notice.pending {
+  border-color: #efd796;
+  background: #fff9e8;
+  color: #715c1e;
+}
+
+.field-hint {
+  margin: 0;
+  color: var(--app-text-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 16px 0;
+  color: var(--app-text-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.check-row input {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  margin: 1px 0 0;
+  accent-color: var(--ion-color-primary);
+}
+
+.submit-button {
+  margin-top: 24px;
+  --border-radius: 15px;
+  --box-shadow: none;
+  min-height: 54px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.form-links {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+  color: var(--app-text-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.form-links a,
+.text-link {
+  color: var(--ion-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-symbol {
+  display: grid;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 20px;
+  border-radius: 20px;
+  background: var(--app-surface-soft);
+  color: var(--ion-color-primary);
+  font-size: 29px;
+  place-items: center;
+}
+
+@media (max-width: 480px) {
+  .auth-layout {
+    padding: 14px;
+  }
+
+  .auth-card {
+    padding: 30px 24px;
+    border-radius: 32px;
+  }
+
+  .brand {
+    margin-bottom: 28px;
+  }
+}
+
+.login-content {
+  --background: var(--app-background);
+  --color: var(--app-text);
+}
+
+.login-layout {
+  min-height: 100%;
+  background: var(--app-background);
+}
+
+.login-hero {
+  position: relative;
+  min-height: 360px;
+  overflow: hidden;
+  padding: 34px clamp(28px, 7vw, 84px) 58px;
+  background-color: #155638;
+  background-image:
+    linear-gradient(112deg, rgb(16 68 43 / 72%) 0%, rgb(24 91 56 / 53%) 52%, rgb(20 76 48 / 38%) 100%),
+    url('/assets/icon/login-city-bg.png');
+  background-position: center, center 82%;
+  background-size: cover;
+  color: #fff;
+}
+
+.login-hero::before {
+  position: absolute;
+  inset: -25% -12% -14% 20%;
+  background-image:
+    radial-gradient(ellipse at 48% 55%, transparent 0 35%, rgb(215 236 216 / 11%) 35.2% 35.5%, transparent 35.7% 48%, rgb(215 236 216 / 9%) 48.2% 48.5%, transparent 48.7%),
+    linear-gradient(28deg, transparent 49.7%, rgb(220 239 222 / 7%) 50%, transparent 50.3%),
+    linear-gradient(150deg, transparent 49.7%, rgb(220 239 222 / 8%) 50%, transparent 50.3%),
+    linear-gradient(90deg, transparent 49.7%, rgb(220 239 222 / 6%) 50%, transparent 50.3%);
+  background-size: 100% 100%, 190px 160px, 220px 190px, 155px 145px;
+  content: '';
+  pointer-events: none;
+}
+
+.login-brand {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #fff;
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+}
+
+.login-brand img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  margin-top: 54px;
+}
+
+.hero-copy p {
+  margin: 0 0 16px;
+  color: #c8dfce;
+  font-size: clamp(12px, 3vw, 17px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(46px, 10vw, 74px);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 0.99;
+}
+
+.hero-copy h1 span {
+  display: inline-block;
+  margin-top: 0.12em;
+  color: var(--app-accent);
+}
+
+.hero-map {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-pin {
+  position: absolute;
+  top: 38%;
+  right: 13%;
+  display: grid;
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgb(255 255 255 / 28%);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 8%);
+  color: var(--app-accent);
+  font-size: 26px;
+  place-items: center;
+}
+
+.login-form-panel {
+  position: relative;
+  min-height: 55vh;
+  margin-top: -28px;
+  padding: 38px clamp(26px, 7vw, 84px) 48px;
+  border-radius: 42px 42px 0 0;
+  background: var(--app-background);
+}
+
+.login-form-wrap {
+  width: min(100%, 600px);
+  margin: 0 auto;
+}
+
+.login-form-wrap > .eyebrow {
+  margin: 6px 0 12px;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+}
+
+.login-form-wrap h2 {
+  margin: 0;
+  color: var(--app-text);
+  font-size: clamp(32px, 7vw, 48px);
+  font-weight: 750;
+  letter-spacing: -0.06em;
+  line-height: 1.08;
+}
+
+.login-intro {
+  margin: 14px 0 34px;
+  color: var(--app-text-muted);
+  font-size: clamp(16px, 4vw, 21px);
+  line-height: 1.55;
+}
+
+.login-field {
+  margin: 22px 0;
+}
+
+.login-field label {
+  padding-left: 4px;
+  color: #39453d;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.login-field .input-shell {
+  min-height: 60px;
+  border: 1.5px solid #d9e4db;
+  border-radius: 20px;
+  background: rgb(255 255 255 / 74%);
+}
+
+.login-field .input-shell > ion-icon {
+  color: #64756a;
+}
+
+.login-field .input-shell ion-input {
+  font-size: 16px;
+}
+
+.login-submit {
+  min-height: 62px;
+  --background: linear-gradient(100deg, #246b42, #34794c);
+  --border-radius: 24px;
+  font-size: 17px;
+}
+
+.login-links {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  color: var(--app-text-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-links p {
+  margin: 0;
+}
+
+.login-links a {
+  color: var(--ion-color-primary);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+@media (min-width: 900px) {
+  .login-layout {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: minmax(340px, 0.95fr) minmax(480px, 1.05fr);
+  }
+
+  .login-hero {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 54px clamp(38px, 6vw, 90px);
+  }
+
+  .hero-copy {
+    margin-top: auto;
+    margin-bottom: 12vh;
+  }
+
+  .login-form-panel {
+    display: grid;
+    min-height: 100vh;
+    margin-top: 0;
+    padding: 50px clamp(38px, 6vw, 90px);
+    border-radius: 0;
+    place-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-hero {
+    min-height: 355px;
+    padding: 30px 27px 48px;
+  }
+
+  .login-brand img {
+    width: 58px;
+    height: 58px;
+  }
+
+  .hero-copy {
+    margin-top: 48px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(49px, 13vw, 58px);
+  }
+
+  .login-form-panel {
+    padding: 34px 27px 45px;
+    border-radius: 38px 38px 0 0;
+  }
+}

@@ -4,7 +4,7 @@ Aplicación creada con Ionic y Angular. El proyecto utiliza Angular Standalone y
 
 ## ¿Qué es WayFinder?
 
-WayFinder es una red social para difundir casos de personas desaparecidas y un espacio privado para que el equipo de cada caso organice la información recibida. La primera versión es un prototipo académico: se debe usar únicamente con casos ficticios o autorizados, nunca para publicar desapariciones reales.
+WayFinder es una red social para difundir casos de personas desaparecidas y un espacio privado para que el equipo de cada caso organice la información recibida. Durante el desarrollo, utiliza únicamente casos ficticios o autorizados; no publiques desapariciones reales sin autorización.
 
 Consulta [docs/PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md) para conocer el propósito, los usuarios, las funciones, los límites y las reglas de privacidad del producto. Las personas que trabajen con asistentes de código también deben leer [AGENTS.md](AGENTS.md).
 
@@ -51,11 +51,11 @@ En esta sección registramos las bibliotecas agregadas para integraciones, para 
 
 | Paquete | Uso | Estado | Instalación |
 | --- | --- | --- | --- |
-| `@supabase/supabase-js` | Cliente oficial para conectar la app con Supabase (Auth, base de datos, Storage y otros servicios). | Instalado y registrado en `package.json` y `package-lock.json`. | `npm install @supabase/supabase-js` |
+| `@fontsource/poppins` | Tipografía Poppins empaquetada localmente para la interfaz. | Instalado y registrado en `package.json` y `package-lock.json`. | `npm install @fontsource/poppins` |
 
 Cuando el paquete se agregue al proyecto, `npm install` actualizará `package.json` y `package-lock.json`. Después, cada integrante puede ejecutar `npm ci` desde la raíz para instalar las versiones registradas. No hace falta ejecutar el comando de instalación individual si el paquete ya aparece en esos archivos.
 
-La URL del proyecto y la clave publicable se configuran en `src/environments/environment.ts` para desarrollo y en `src/environments/environment.prod.ts` para compilaciones de producción. La clave publicable puede formar parte de la app cliente; las claves secretas nunca deben incluirse en código del frontend.
+La conexión con el backend y la autenticación están pendientes de rediseño. Por ahora, la aplicación no tiene integración de autenticación ni persistencia remota. El modelo conceptual de datos se conserva en [docs/MODELO_DATOS_Y_PERMISOS.md](docs/MODELO_DATOS_Y_PERMISOS.md) y deberá revisarse al definir la nueva arquitectura.
 
 ## Instalación
 

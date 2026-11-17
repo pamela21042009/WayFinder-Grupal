@@ -1,3 +1,12 @@
+@use './theme/feed';
+@use './theme/explore';
+
+@import '@fontsource/poppins/latin-400.css';
+@import '@fontsource/poppins/latin-500.css';
+@import '@fontsource/poppins/latin-600.css';
+@import '@fontsource/poppins/latin-700.css';
+@import '@fontsource/poppins/latin-800.css';
+
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -32,6 +41,11 @@
  * https://ionicframework.com/docs/theming/dark-mode
  */
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+/* La interfaz mantiene la paleta clara del diseño de WayFinder. */
+
+html,
+body {
+  font-family: var(--ion-font-family);
+  color: var(--app-text);
+  background: var(--app-background);
+}

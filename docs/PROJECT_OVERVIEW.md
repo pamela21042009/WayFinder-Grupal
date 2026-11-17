@@ -37,7 +37,7 @@ En la V1 no hay cuentas para menores de 18 años. Pueden consultar contenido pú
 ## Seguridad y privacidad
 
 - Clasificar cada dato como público, privado o sensible y exponer solo lo necesario.
-- Aplicar Row Level Security (RLS) a todas las tablas expuestas y políticas de Storage; ocultar un botón en la interfaz no sustituye los permisos del backend.
+- Aplicar controles de acceso del lado del servidor a todas las tablas y archivos; ocultar un botón en la interfaz no sustituye los permisos del backend.
 - Mantener privados los expedientes, reportes, mensajes, ubicaciones exactas de pistas, datos de contacto de informantes y fotos de reportes.
 - Eliminar metadatos EXIF/GPS de las imágenes antes de subirlas y guardar archivos de reportes en almacenamiento privado.
 - Permitir reportes de visitantes mediante una función segura con protección anti-bots y límites de frecuencia.
@@ -46,7 +46,7 @@ En la V1 no hay cuentas para menores de 18 años. Pueden consultar contenido pú
 
 ## Límites de la primera versión
 
-- **Uso exclusivamente académico:** solo casos ficticios o autorizados; no publicar desapariciones reales.
+- **Uso responsable:** utiliza únicamente casos ficticios o autorizados; no publiques desapariciones reales sin autorización.
 - Aplicación web adaptable (PWA) y aplicación Android con un mismo código Ionic/Capacitor.
 - iOS, escritorio, notificaciones push y pagos quedan fuera de la entrega descrita.
 - La propuesta prioriza herramientas gratuitas o de código abierto.
@@ -56,7 +56,7 @@ En la V1 no hay cuentas para menores de 18 años. Pueden consultar contenido pú
 ## Arquitectura prevista
 
 - **Cliente:** Ionic, Angular Standalone, TypeScript y Capacitor.
-- **Backend:** Supabase Auth, PostgreSQL, RLS, Storage, Realtime y Edge Functions.
+- **Backend:** pendiente de seleccionar; deberá cubrir autenticación, base de datos, almacenamiento, actualizaciones en tiempo real y funciones seguras.
 - **Mapas:** Leaflet y OpenStreetMap.
 - **Anti-bots:** Cloudflare Turnstile para formularios públicos.
 - **Correo de Auth:** SMTP personalizado.

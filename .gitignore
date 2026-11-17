@@ -19,6 +19,7 @@ docs/*
 !docs/PROJECT_OVERVIEW.md
 !docs/WayFinder_Ajustes_Boceto.pdf
 !docs/PLAN_REPARTO_FUNCIONAL.pdf
+!docs/MODELO_DATOS_Y_PERMISOS.md
 
 /.sourcemaps
 /.versions
