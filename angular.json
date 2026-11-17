@@ -33,7 +33,7 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss", "src/theme/auth.scss"],
+            "styles": ["src/global.scss", "src/theme/variables.scss", "src/app/features/auth/auth.scss"],
             "scripts": [],
             "browser": "src/main.ts"
           },

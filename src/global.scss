@@ -1,5 +1,6 @@
-@use './theme/feed';
-@use './theme/explore';
+@use './app/features/feed/feed';
+@use './app/features/feed/components/post-card/post-card';
+@use './app/features/explore/explore';
 
 @import '@fontsource/poppins/latin-400.css';
 @import '@fontsource/poppins/latin-500.css';

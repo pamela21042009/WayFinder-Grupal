@@ -1,0 +1,54 @@
+<ion-content class="login-content" [fullscreen]="true">
+  <main class="login-layout">
+    <section class="login-hero" aria-label="WayFinder">
+      <div class="hero-map" aria-hidden="true"><span class="hero-pin"><ion-icon name="location"></ion-icon></span></div>
+      <a class="login-brand" routerLink="/auth/login" aria-label="WayFinder, inicio">
+        <img src="assets/brand/W.png" alt="" width="64" height="64" />
+        <span>WAYFINDER</span>
+      </a>
+      <div class="hero-copy">
+        <p>UNA COMUNIDAD QUE ACOMPAÑA</p>
+        <h1>Encuentra.<br />Comparte.<br /><span>Ayuda.</span></h1>
+      </div>
+    </section>
+
+    <section class="login-form-panel" aria-labelledby="login-title">
+      <div class="login-form-wrap">
+        <p class="eyebrow">Nos alegra verte</p>
+        <h2 id="login-title">Bienvenido de nuevo</h2>
+        <p class="login-intro">Inicia sesión para continuar en WayFinder.</p>
+
+        <form (ngSubmit)="submit()" #loginForm="ngForm" novalidate>
+          <div class="field login-field">
+            <label for="login-email">Correo electrónico</label>
+            <div class="input-shell">
+              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+              <ion-input id="login-email" name="email" #emailField="ngModel" type="email" inputmode="email" autocomplete="username" placeholder="tucorreo@ejemplo.com" [(ngModel)]="email" required email></ion-input>
+            </div>
+            @if ((emailField.touched || submitted) && !email.trim()) { <p class="form-error" role="alert">El correo electrónico es obligatorio.</p> }
+            @else if (email && !isEmailValid) { <p class="form-error" role="alert">Escribe un correo electrónico válido.</p> }
+          </div>
+
+          <div class="field login-field">
+            <label for="login-password">Contraseña</label>
+            <div class="input-shell">
+              <ion-icon name="lock-closed-outline" aria-hidden="true"></ion-icon>
+              <ion-input id="login-password" name="password" #passwordField="ngModel" [type]="showPassword ? 'text' : 'password'" autocomplete="current-password" placeholder="Escribe tu contraseña" [(ngModel)]="password" required></ion-input>
+              <button class="visibility-toggle" type="button" [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'" (click)="showPassword = !showPassword"><ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon></button>
+            </div>
+            @if ((passwordField.touched || submitted) && !password) { <p class="form-error" role="alert">La contraseña es obligatoria.</p> }
+          </div>
+
+          @if (error()) { <p class="form-error" role="alert">{{ error() }}</p> }
+          @if (notice()) { <p class="form-notice pending" role="status">{{ notice() }}</p> }
+          <ion-button class="submit-button login-submit" type="submit" expand="block">Iniciar sesión <ion-icon name="arrow-forward" slot="end" aria-hidden="true"></ion-icon></ion-button>
+        </form>
+
+        <nav class="login-links" aria-label="Ayuda con el acceso">
+          <p>¿Olvidaste tu contraseña? <a routerLink="/auth/forgot-password">Recupérala aquí</a></p>
+          <p>¿No tienes una cuenta? <a routerLink="/auth/register">Regístrate aquí</a></p>
+        </nav>
+      </div>
+    </section>
+  </main>
+</ion-content>

@@ -1,0 +1,145 @@
+<ion-content class="explore-content" [fullscreen]="true">
+  <main class="explore-page">
+    <header class="explore-header">
+      <a class="explore-brand" routerLink="/home" aria-label="WayFinder, inicio">
+        <img src="assets/brand/W.png" alt="" width="46" height="46" />
+        <span>WAYFINDER</span>
+      </a>
+      <div class="explore-header-actions">
+        <button class="explore-icon-button notification-action" type="button" aria-label="Notificaciones" (click)="showToast('No tienes notificaciones nuevas.')">
+          <ion-icon name="notifications-outline" aria-hidden="true"></ion-icon><span></span>
+        </button>
+        <button class="explore-profile-avatar" type="button" aria-label="Abrir perfil" (click)="showToast('La pantalla de perfil estará disponible próximamente.')">MF</button>
+      </div>
+    </header>
+
+    <section class="explore-intro">
+      <h1>Explorar</h1>
+      <p>Descubre casos, busca personas<br class="desktop-break" /> y mantente informado.</p>
+    </section>
+
+    <section class="explore-search-section" aria-label="Buscar y filtrar publicaciones">
+      <label class="explore-search">
+        <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+        <input type="search" name="exploreSearch" [(ngModel)]="searchTerm" placeholder="Buscar por nombre, ubicación o palabra clave..." aria-label="Buscar por nombre, ubicación o palabra clave" />
+        @if (searchTerm) {
+          <button class="explore-clear-search" type="button" aria-label="Limpiar búsqueda" (click)="searchTerm = ''">×</button>
+        }
+      </label>
+      <button class="filter-toggle" type="button" [attr.aria-expanded]="showFilters" aria-controls="explore-filters" aria-label="Mostrar filtros" (click)="toggleFilters()">
+        <ion-icon name="options-outline" aria-hidden="true"></ion-icon>
+      </button>
+    </section>
+
+    @if (showFilters) {
+      <section class="explore-filter-panel" id="explore-filters" aria-label="Filtros de búsqueda">
+        <label>País
+          <select aria-label="Filtrar por país" disabled><option>República Dominicana</option></select>
+        </label>
+        <label>Ciudad
+          <select [(ngModel)]="selectedCity" name="cityFilter" aria-label="Filtrar por ciudad">
+            @for (city of cities; track city) { <option [value]="city">{{ city }}</option> }
+          </select>
+        </label>
+        <label>Fecha
+          <select [(ngModel)]="selectedDate" name="dateFilter" aria-label="Filtrar por fecha">
+            @for (date of dateRanges; track date) { <option [value]="date">{{ date }}</option> }
+          </select>
+        </label>
+        <label>Estado
+          <select [(ngModel)]="selectedStatus" name="statusFilter" aria-label="Filtrar por estado">
+            @for (status of statuses; track status) { <option [value]="status">{{ status }}</option> }
+          </select>
+        </label>
+        <button class="reset-filters" type="button" (click)="resetFilters()">Limpiar filtros</button>
+      </section>
+    }
+
+    <div class="explore-filter-chips" role="tablist" aria-label="Tipo de contenido">
+      @for (filter of filters; track filter.id) {
+        <button type="button" role="tab" [attr.aria-selected]="activeFilter === filter.id" [class.active]="activeFilter === filter.id" (click)="selectFilter(filter.id)">
+          <ion-icon [name]="filter.icon" aria-hidden="true"></ion-icon><span>{{ filter.label }}</span>
+        </button>
+      }
+    </div>
+
+    @if (activeFilter !== 'updates') {
+      <section class="explore-map-section" aria-label="Vista general de referencias por ciudad">
+        <div class="explore-map" [class.expanded]="mapExpanded" role="img" aria-label="Mapa ilustrativo con referencias generales por ciudad">
+          <div class="map-land map-land-one"></div>
+          <div class="map-land map-land-two"></div>
+          <div class="map-roads" aria-hidden="true"></div>
+          <span class="map-marker marker-a" aria-hidden="true"><ion-icon name="person-outline"></ion-icon></span>
+          <span class="map-marker marker-b" aria-hidden="true"><ion-icon name="person-outline"></ion-icon></span>
+          <span class="map-marker marker-c" aria-hidden="true"><ion-icon name="person-outline"></ion-icon></span>
+          <span class="map-marker marker-d" aria-hidden="true"><ion-icon name="person-outline"></ion-icon></span>
+          <span class="map-marker marker-center" aria-hidden="true"><ion-icon name="location-outline"></ion-icon></span>
+          <span class="map-caption">Referencias por ciudad</span>
+          <button class="map-expand-button" type="button" (click)="mapExpanded = !mapExpanded"><ion-icon name="map-outline" aria-hidden="true"></ion-icon>{{ mapExpanded ? 'Contraer mapa' : 'Ver mapa' }}</button>
+        </div>
+      </section>
+    }
+
+    @if (activeFilter !== 'updates') {
+      <section class="explore-section" aria-labelledby="featured-title">
+        <div class="explore-section-heading">
+          <h2 id="featured-title"><ion-icon name="trending-up-outline" aria-hidden="true"></ion-icon>Casos destacados</h2>
+          <button type="button" (click)="selectFilter('cases')">Ver todos <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon></button>
+        </div>
+
+        @for (item of filteredCases; track item.id) {
+          <article class="featured-case">
+            <img [src]="item.image" [alt]="'Fotografía de ' + item.personName" loading="lazy" />
+            <div class="featured-case-info">
+              <span class="case-status"><ion-icon name="alert-circle-outline" aria-hidden="true"></ion-icon>{{ item.status }}</span>
+              <h3>{{ item.personName }}</h3>
+              <div class="featured-meta">
+                <span><ion-icon name="location-outline" aria-hidden="true"></ion-icon>{{ item.city }}</span>
+                <span><ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>{{ item.reported }}</span>
+              </div>
+              <p>{{ item.description }}</p>
+            </div>
+            <button class="featured-share" type="button" [attr.aria-label]="'Compartir caso de ' + item.personName" (click)="shareCase(item)"><ion-icon name="share-social-outline" aria-hidden="true"></ion-icon></button>
+          </article>
+        } @empty {
+          <div class="explore-empty"><ion-icon name="search-outline" aria-hidden="true"></ion-icon><strong>No encontramos resultados</strong><span>Prueba con otra búsqueda o cambia los filtros.</span></div>
+        }
+      </section>
+    }
+
+    <section class="explore-section categories-section" aria-labelledby="categories-title">
+      <h2 id="categories-title">Categorías</h2>
+      <div class="explore-categories">
+        <button type="button" (click)="selectFilter('cases')"><ion-icon name="people-outline" aria-hidden="true"></ion-icon><span>Personas<br />desaparecidas</span></button>
+        <button type="button" (click)="selectFilter('updates')"><ion-icon name="calendar-outline" aria-hidden="true"></ion-icon><span>Actualizaciones</span></button>
+        <button type="button" (click)="toggleFilters()"><ion-icon name="location-outline" aria-hidden="true"></ion-icon><span>Por ubicación</span></button>
+        <button type="button" (click)="selectedDate = 'Últimos 7 días'; selectFilter('cases')"><ion-icon name="star-outline" aria-hidden="true"></ion-icon><span>Casos recientes</span></button>
+      </div>
+    </section>
+
+    @if (filteredUpdates.length > 0) {
+      <section class="explore-section updates-section" aria-labelledby="updates-title">
+        <div class="explore-section-heading">
+          <h2 id="updates-title"><ion-icon name="refresh-outline" aria-hidden="true"></ion-icon>Últimas actualizaciones</h2>
+          <button type="button" (click)="selectFilter('updates')">Ver todas <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon></button>
+        </div>
+        @for (update of filteredUpdates; track update.id) {
+          <article class="explore-update-card">
+            <div class="update-avatar" aria-hidden="true">{{ update.initials }}</div>
+            <div class="explore-update-copy">
+              <strong>{{ update.author }}</strong>
+              <span>{{ update.published }} <span aria-hidden="true">·</span> <ion-icon name="globe-outline" aria-label="Público"></ion-icon></span>
+              <p>{{ update.message }}</p>
+              <small>{{ update.caseName }}</small>
+            </div>
+            <span class="update-type"><ion-icon name="refresh-outline" aria-hidden="true"></ion-icon>Actualización</span>
+          </article>
+        }
+      </section>
+    }
+  </main>
+</ion-content>
+
+<app-bottom-navigation activeSection="explore"></app-bottom-navigation>
+
+<ion-toast [isOpen]="toastOpen" [message]="toastMessage" duration="2300" position="bottom" (didDismiss)="toastOpen = false"></ion-toast>
