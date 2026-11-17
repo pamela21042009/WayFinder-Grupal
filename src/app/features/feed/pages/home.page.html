@@ -36,8 +36,8 @@
           (reactionToggled)="toggleLike($event)"
           (shareRequested)="sharePost($event)"
           (commentsRequested)="showToast('Los comentarios aún no están disponibles.')"
-          (informationRequested)="showToast('El formulario para aportar información aún no está disponible.')"
-          (menuRequested)="showToast('Las opciones de la publicación estarán disponibles próximamente.')"
+          (informationRequested)="openReport()"
+          (menuRequested)="openComplaint()"
         ></app-post-card>
       } @empty {
         <div class="feed-empty">
