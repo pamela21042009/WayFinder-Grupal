@@ -55,11 +55,33 @@
       </section>
     }
 
+    @if (view === 'new-case') {
+      <section class="form-layout create-case-layout">
+        <div class="intro-column">
+          <a class="back-link" routerLink="/my-cases"><ion-icon name="arrow-back-outline"></ion-icon> Mis expedientes</a>
+          <span class="eyebrow">NUEVO EXPEDIENTE</span>
+          <h1>Crear expediente</h1>
+          <p class="lead">Registra un caso para organizar la información y darle seguimiento.</p>
+          <div class="privacy-card"><ion-icon name="information-circle-outline"></ion-icon><div><strong>Guardado de prueba en este dispositivo</strong><p>Sin Supabase ni backend, el expediente solo se guarda en este navegador y no se comparte con tu compañero.</p></div></div>
+        </div>
+        <form class="report-form" (ngSubmit)="createLocalCase()">
+          <div class="form-heading"><span class="step-badge">01</span><div><h2>Datos del expediente</h2><p>Completa los campos para crear el registro local.</p></div></div>
+          <label>Nombre del caso <span>*</span><input name="newCaseTitle" [(ngModel)]="newCaseTitle" required maxlength="100" placeholder="Ej. Búsqueda de persona" /></label>
+          <label>Ubicación general <span>*</span><input name="newCaseLocation" [(ngModel)]="newCaseLocation" required maxlength="100" placeholder="Ciudad o municipio" /></label>
+          <label>Descripción <small>Opcional</small><textarea name="newCaseDescription" [(ngModel)]="newCaseDescription" maxlength="500" rows="4" placeholder="Añade un resumen para identificar el caso."></textarea></label>
+          <button class="primary-button" type="submit"><ion-icon name="briefcase-outline"></ion-icon> Guardar expediente</button>
+        </form>
+      </section>
+    }
+
     @if (view === 'case-list') {
       <section class="content-section">
-        <div class="section-title"><div><span class="eyebrow">ESPACIO PRIVADO</span><h1>Mis expedientes</h1><p>Revisa los casos y aportes de ejemplo asignados a tu cuenta.</p></div><a class="primary-button compact" routerLink="/reports/new"><ion-icon name="send-outline"></ion-icon> Aportar información</a></div>
+        <div class="section-title"><div><span class="eyebrow">ESPACIO PRIVADO</span><h1>Mis expedientes</h1><p>Revisa los casos y aportes de ejemplo asignados a tu cuenta.</p></div><div class="case-list-actions"><a class="secondary-button compact" routerLink="/reports/new"><ion-icon name="send-outline"></ion-icon> Aportar información</a><a class="primary-button compact" routerLink="/my-cases/new"><ion-icon name="briefcase-outline"></ion-icon> Crear expediente</a></div></div>
         <div class="summary-grid"><article class="summary-card"><span class="summary-icon green"><ion-icon name="briefcase-outline"></ion-icon></span><div><strong>01</strong><span>Expediente de ejemplo</span></div></article><article class="summary-card"><span class="summary-icon gold"><ion-icon name="mail-outline"></ion-icon></span><div><strong>02</strong><span>Aportes de ejemplo</span></div></article><article class="summary-card"><span class="summary-icon sage"><ion-icon name="time-outline"></ion-icon></span><div><strong>01</strong><span>Pendiente de revisión</span></div></article></div>
         <h2 class="list-heading">Casos asignados</h2>
+        @for (localCase of localCases; track localCase.id) {
+          <article class="case-row local-case-row"><span class="case-avatar large">WF</span><span class="case-row-copy"><small>EXPEDIENTE LOCAL · {{ localCase.id }}</small><strong>{{ localCase.title }}</strong><span>{{ localCase.location }} · {{ localCase.description || 'Sin descripción' }}</span></span><span class="case-row-status">En preparación</span></article>
+        }
         <a class="case-row" routerLink="/my-cases/WF-EJEMPLO-01"><span class="case-avatar large">WF</span><span class="case-row-copy"><small>CASO DE DATOS DE EJEMPLO · WF-EJEMPLO-01</small><strong>Valeria Rodríguez</strong><span>Última actividad: hoy · Datos ficticios de interfaz</span></span><span class="case-row-status">En seguimiento</span><ion-icon class="row-chevron" name="chevron-forward-outline"></ion-icon></a>
       </section>
     }

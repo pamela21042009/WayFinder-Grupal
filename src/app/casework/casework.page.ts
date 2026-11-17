@@ -44,6 +44,13 @@ addIcons({
   timeOutline,
 });
 
+interface LocalCase {
+  id: string;
+  title: string;
+  location: string;
+  description: string;
+}
+
 @Component({
   selector: 'app-casework',
   templateUrl: './casework.page.html',
@@ -89,6 +96,10 @@ export class CaseworkPage {
   invitationResponse = '';
   conversionNote = '';
   conversionSaved = false;
+  newCaseTitle = '';
+  newCaseLocation = '';
+  newCaseDescription = '';
+  localCases: LocalCase[] = this.loadLocalCases();
 
   readonly report = {
     id: 'REP-EJEMPLO-01',
@@ -126,5 +137,31 @@ export class CaseworkPage {
 
   convertComment(): void {
     this.conversionSaved = true;
+  }
+
+  createLocalCase(): void {
+    const title = this.newCaseTitle.trim();
+    const location = this.newCaseLocation.trim();
+    if (!title || !location || typeof localStorage === 'undefined') return;
+
+    const localCase: LocalCase = {
+      id: `WF-LOCAL-${Date.now().toString().slice(-6)}`,
+      title,
+      location,
+      description: this.newCaseDescription.trim(),
+    };
+    this.localCases = [localCase, ...this.localCases];
+    localStorage.setItem('wayfinder.localCases', JSON.stringify(this.localCases));
+    void this.router.navigateByUrl('/my-cases');
+  }
+
+  private loadLocalCases(): LocalCase[] {
+    if (typeof localStorage === 'undefined') return [];
+    try {
+      const saved = localStorage.getItem('wayfinder.localCases');
+      return saved ? (JSON.parse(saved) as LocalCase[]) : [];
+    } catch {
+      return [];
+    }
   }
 }

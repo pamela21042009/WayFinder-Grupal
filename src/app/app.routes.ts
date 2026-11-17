@@ -71,6 +71,11 @@ export const routes: Routes = [
     loadComponent: () => import('./casework/casework.page').then((m) => m.CaseworkPage),
   },
   {
+    path: 'my-cases/new',
+    data: { view: 'new-case' },
+    loadComponent: () => import('./casework/casework.page').then((m) => m.CaseworkPage),
+  },
+  {
     path: 'my-cases',
     data: { view: 'case-list' },
     loadComponent: () => import('./casework/casework.page').then((m) => m.CaseworkPage),
