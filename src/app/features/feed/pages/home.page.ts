@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IonContent, IonIcon, IonToast } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { notificationsOutline, searchOutline } from 'ionicons/icons';
@@ -18,6 +18,7 @@ type FeedTab = 'for-you' | 'following' | 'recent';
   imports: [BottomNavigationComponent, FormsModule, IonContent, IonIcon, IonToast, PostCardComponent, RouterLink],
 })
 export class HomePage {
+  private readonly router = inject(Router);
   activeTab: FeedTab = 'for-you';
   searchTerm = '';
   toastOpen = false;
@@ -61,6 +62,14 @@ export class HomePage {
     } catch {
       this.showToast('No se pudo compartir desde este dispositivo.');
     }
+  }
+
+  openComplaint(): void {
+    void this.router.navigateByUrl('/reports/complaint/new');
+  }
+
+  openReport(): void {
+    void this.router.navigateByUrl('/reports/new');
   }
 
   showToast(message: string): void {
