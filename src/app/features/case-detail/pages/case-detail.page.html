@@ -1,0 +1,104 @@
+<ion-content class="case-detail-content" [fullscreen]="true">
+  @if (caseDetail; as item) {
+    <main class="case-detail-page">
+      <section class="case-hero" aria-label="Fotografía principal del caso">
+        @if (currentPhoto) {
+          <img [src]="currentPhoto" [alt]="'Fotografía pública de ' + item.personName" />
+        }
+        <div class="hero-scrim"></div>
+        <button class="hero-back" type="button" aria-label="Volver a la pantalla anterior" (click)="goBack()"><ion-icon name="arrow-back-outline" aria-hidden="true"></ion-icon></button>
+        <button class="hero-share" type="button" aria-label="Compartir caso" (click)="shareCase()"><ion-icon name="share-social-outline" aria-hidden="true"></ion-icon></button>
+      </section>
+
+      <article class="case-detail-card">
+        <header class="case-title-block">
+          <div>
+            <span class="eyebrow">CASO PÚBLICO · DATOS DE DEMOSTRACIÓN</span>
+            <h1>{{ item.personName }}</h1>
+            <span class="case-status-badge"><ion-icon name="warning-outline" aria-hidden="true"></ion-icon>{{ item.status }}</span>
+          </div>
+          <button class="save-button" [class.saved]="saved" type="button" [attr.aria-pressed]="saved" [attr.aria-label]="saved ? 'Quitar de guardados' : 'Guardar caso'" (click)="saved = !saved; showToast(saved ? 'Caso guardado.' : 'Caso quitado de guardados.')">
+            <ion-icon name="bookmark-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </header>
+
+        <div class="case-facts" aria-label="Datos públicos del caso">
+          <span><ion-icon name="person-outline" aria-hidden="true"></ion-icon>{{ item.age }} años</span>
+          <span><ion-icon name="location-outline" aria-hidden="true"></ion-icon>{{ item.city }}</span>
+          <span><ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>{{ item.reported }}</span>
+        </div>
+
+        <p class="case-summary">{{ item.lastSeenDescription }}</p>
+
+        <aside class="public-notice">
+          <ion-icon name="information-circle-outline" aria-hidden="true"></ion-icon>
+          <p>La información de esta publicación no está verificada. Comparte datos con responsabilidad y no acudas a ubicaciones ni confrontes a nadie.</p>
+        </aside>
+
+        <section class="photo-section" aria-labelledby="photos-heading">
+          <div class="section-heading">
+            <h2 id="photos-heading"><ion-icon name="images-outline" aria-hidden="true"></ion-icon> Fotos del caso</h2>
+            <div class="photo-controls" aria-label="Navegación de fotos">
+              <span>{{ photoIndex + 1 }} / {{ item.photos.length }}</span>
+              <button type="button" aria-label="Foto anterior" [disabled]="item.photos.length < 2" (click)="changePhoto(-1)"><ion-icon name="chevron-back-outline" aria-hidden="true"></ion-icon></button>
+              <button type="button" aria-label="Foto siguiente" [disabled]="item.photos.length < 2" (click)="changePhoto(1)"><ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon></button>
+            </div>
+          </div>
+          <div class="photo-gallery">
+            @for (photo of item.photos; track $index; let index = $index) {
+              <button type="button" [class.current]="photoIndex === index" [attr.aria-label]="'Mostrar foto ' + (index + 1)" (click)="photoIndex = index">
+                <img [src]="photo" [alt]="'Foto ' + (index + 1) + ' de ' + item.personName" loading="lazy" />
+              </button>
+            }
+          </div>
+        </section>
+
+        <section class="additional-details" aria-labelledby="details-heading">
+          <h2 id="details-heading"><ion-icon name="information-circle-outline" aria-hidden="true"></ion-icon> Detalles compartidos</h2>
+          <ul>
+            <li><ion-icon name="calendar-outline" aria-hidden="true"></ion-icon><span>Fecha del reporte: {{ item.reported }}</span></li>
+            <li><ion-icon name="location-outline" aria-hidden="true"></ion-icon><span>Referencia pública: {{ item.city }} ({{ item.area }})</span></li>
+            <li><ion-icon name="shirt-outline" aria-hidden="true"></ion-icon><span>Ropa descrita: {{ item.clothingDescription }}</span></li>
+          </ul>
+        </section>
+
+        <section class="publisher-row" aria-label="Autor de la publicación">
+          <div class="publisher-avatar" aria-hidden="true">{{ item.publisherInitials }}</div>
+          <div class="publisher-copy"><span>Publicado por</span><strong>{{ item.publisher }}</strong><small>{{ item.published }}</small></div>
+          <button type="button" class="follow-button" [class.following]="following" [attr.aria-pressed]="following" (click)="following = !following; showToast(following ? 'Ahora sigues las publicaciones de esta cuenta.' : 'Dejaste de seguir esta cuenta.')">{{ following ? 'Siguiendo' : 'Seguir' }}</button>
+        </section>
+
+        <section class="case-detail-actions" aria-label="Acciones del caso">
+          <button type="button" class="reaction-button" [class.liked]="liked" [attr.aria-pressed]="liked" [attr.aria-label]="liked ? 'Quitar reacción' : 'Reaccionar'" (click)="liked = !liked"><ion-icon [name]="liked ? 'heart' : 'heart-outline'" aria-hidden="true"></ion-icon><span>{{ formatCount(item.likes, liked) }}</span></button>
+          <a class="comments-button" href="#comments"><ion-icon name="chatbubble-outline" aria-hidden="true"></ion-icon><span>{{ item.comments }} comentarios</span></a>
+          <button class="information-button" type="button" (click)="showToast('El formulario para aportar información estará disponible próximamente.')"><ion-icon name="chatbubble-outline" aria-hidden="true"></ion-icon><span>Tengo información</span></button>
+        </section>
+
+        @if (item.update) {
+          <aside class="case-detail-update">
+            <div class="case-detail-update-heading"><ion-icon name="refresh-outline" aria-hidden="true"></ion-icon><strong>Actualización del caso</strong><span>Hace 1 día</span></div>
+            <p>{{ item.update }}</p>
+          </aside>
+        }
+
+        <section class="comments-preview" id="comments" aria-labelledby="comments-heading">
+          <div class="case-detail-section-heading"><h2 id="comments-heading">Comentarios</h2><span>{{ item.comments }}</span></div>
+          <p>Los comentarios deben aportar información pública y respetuosa. No incluyas datos privados ni ubicaciones exactas.</p>
+          <button type="button" (click)="showToast('Los comentarios estarán disponibles próximamente.')">Ver comentarios</button>
+        </section>
+
+        <button class="report-link" type="button" (click)="showToast('La opción para denunciar contenido estará disponible próximamente.')"><ion-icon name="flag-outline" aria-hidden="true"></ion-icon><span>Denunciar esta publicación</span></button>
+      </article>
+    </main>
+  } @else {
+    <main class="case-not-found">
+      <div class="not-found-icon"><ion-icon name="shield-checkmark-outline" aria-hidden="true"></ion-icon></div>
+      <h1>Este caso no está disponible</h1>
+      <p>Es posible que el enlace haya cambiado o que la publicación ya no esté disponible.</p>
+      <a routerLink="/explore">Volver a Explorar</a>
+    </main>
+  }
+</ion-content>
+
+<app-bottom-navigation activeSection="none"></app-bottom-navigation>
+<ion-toast [isOpen]="toastOpen" [message]="toastMessage" duration="2300" position="bottom" (didDismiss)="toastOpen = false"></ion-toast>

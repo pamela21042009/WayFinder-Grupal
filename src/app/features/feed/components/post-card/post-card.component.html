@@ -12,10 +12,12 @@
 
   <div class="case-content">
     <div class="case-image-wrap">
-      <img class="case-image" [src]="post.image" [alt]="'Fotografía de ' + post.subject" loading="lazy" />
+      <a class="case-image-link" [routerLink]="['/cases', post.id]" [attr.aria-label]="'Ver el caso de ' + post.subject">
+        <img class="case-image" [src]="post.image" [alt]="'Fotografía de ' + post.subject" loading="lazy" />
+      </a>
     </div>
     <div class="case-details">
-      <h2>{{ post.subject }}</h2>
+      <h2><a [routerLink]="['/cases', post.id]">{{ post.subject }}</a></h2>
       <ul class="case-meta">
         <li><ion-icon name="location-outline" aria-hidden="true"></ion-icon><span>Última referencia pública: {{ post.city }}</span></li>
         <li><ion-icon name="calendar-outline" aria-hidden="true"></ion-icon><span>Reportado: {{ post.reported }}</span></li>
