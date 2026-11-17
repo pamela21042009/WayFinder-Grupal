@@ -1,0 +1,51 @@
+<nav class="bottom-navigation" aria-label="Navegación principal">
+  <button
+    class="bottom-nav-item"
+    [class.selected]="activeSection === 'home'"
+    type="button"
+    routerLink="/home"
+    [attr.aria-current]="activeSection === 'home' ? 'page' : null"
+    (click)="onHomeSelected()"
+  >
+    <ion-icon name="home" aria-hidden="true"></ion-icon><span>Inicio</span>
+  </button>
+  <button
+    class="bottom-nav-item"
+    [class.selected]="activeSection === 'explore'"
+    type="button"
+    routerLink="/explore"
+    [attr.aria-current]="activeSection === 'explore' ? 'page' : null"
+  >
+    <ion-icon [name]="activeSection === 'explore' ? 'compass' : 'compass-outline'" aria-hidden="true"></ion-icon><span>Explorar</span>
+  </button>
+  <button
+    class="bottom-nav-item create-nav"
+    type="button"
+    aria-label="Crear publicación"
+    (click)="showToast('La creación de publicaciones estará disponible próximamente.')"
+  >
+    <span class="create-button"><ion-icon name="add" aria-hidden="true"></ion-icon></span><span>Crear</span>
+  </button>
+  <button
+    class="bottom-nav-item"
+    type="button"
+    (click)="showToast('Avisos estará disponible próximamente.')"
+  >
+    <ion-icon name="mail-outline" aria-hidden="true"></ion-icon><span>Avisos</span>
+  </button>
+  <button
+    class="bottom-nav-item"
+    type="button"
+    (click)="showToast('Perfil estará disponible próximamente.')"
+  >
+    <ion-icon name="person-outline" aria-hidden="true"></ion-icon><span>Perfil</span>
+  </button>
+</nav>
+
+<ion-toast
+  [isOpen]="toastOpen"
+  [message]="toastMessage"
+  duration="2300"
+  position="bottom"
+  (didDismiss)="toastOpen = false"
+></ion-toast>

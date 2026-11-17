@@ -1,0 +1,249 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.feed-content {
+  --background: #f5f8f5;
+  --color: var(--app-text);
+}
+
+.feed-page {
+  min-height: 100%;
+  padding: calc(env(safe-area-inset-top) + 12px) 0 calc(110px + env(safe-area-inset-bottom));
+}
+
+.feed-header,
+.feed-tools,
+.feed-list {
+  width: min(100%, 780px);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.feed-header {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px 12px;
+}
+
+.feed-brand {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  color: #2f7047;
+  font-size: clamp(20px, 5vw, 27px);
+  font-weight: 800;
+  letter-spacing: 0.055em;
+  text-decoration: none;
+}
+
+.feed-brand img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.icon-action,
+.profile-avatar,
+.feed-tabs button,
+.clear-search {
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.icon-action {
+  position: relative;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  background: transparent;
+  color: #2f7047;
+  font-size: 25px;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #f5f8f5;
+  border-radius: 50%;
+  background: var(--app-accent);
+}
+
+.profile-avatar {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #d9eadb, #a8c9ae);
+  color: #225d3a;
+  font-weight: 750;
+}
+
+.profile-avatar {
+  width: 42px;
+  height: 42px;
+  font-size: 13px;
+}
+
+.feed-tools {
+  padding: 0 20px 14px;
+}
+
+.feed-search {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 17px;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  background: #e8f1e9;
+  color: #2f7047;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.feed-search:focus-within {
+  border-color: #82ad8d;
+  box-shadow: 0 0 0 3px rgb(47 112 71 / 10%);
+}
+
+.feed-search > ion-icon {
+  flex: 0 0 auto;
+  font-size: 22px;
+}
+
+.feed-search input {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--app-text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.feed-search input::placeholder {
+  color: #748078;
+  opacity: 1;
+}
+
+.clear-search {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 65%);
+  color: #526258;
+  font-size: 21px;
+  line-height: 1;
+  align-self: center;
+}
+
+.feed-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 13px;
+}
+
+.feed-tabs button {
+  position: relative;
+  min-height: 48px;
+  padding: 0 8px;
+  border-radius: 28px;
+  background: #e8f1e9;
+  color: #26382b;
+  font-size: 14px;
+  font-weight: 650;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.feed-tabs button.active {
+  background: #2f7047;
+  color: #fff;
+}
+
+.feed-tabs button.active::after {
+  position: absolute;
+  right: 25%;
+  bottom: 6px;
+  left: 25%;
+  height: 3px;
+  border-radius: 3px;
+  background: #fff;
+  content: '';
+}
+
+.feed-list {
+  display: grid;
+  gap: 15px;
+  padding: 0 12px;
+}
+
+.feed-empty {
+  display: grid;
+  justify-items: center;
+  padding: 48px 20px;
+  border: 1px dashed #cbd9cd;
+  border-radius: 22px;
+  color: #707b72;
+  text-align: center;
+}
+
+.feed-empty ion-icon {
+  color: #2f7047;
+  font-size: 28px;
+}
+
+.feed-empty h2 {
+  margin: 12px 0 4px;
+  color: var(--app-text);
+  font-size: 18px;
+}
+
+.feed-empty p {
+  margin: 0;
+  font-size: 13px;
+}
+
+@media (min-width: 700px) {
+  .feed-page {
+    padding-top: calc(env(safe-area-inset-top) + 20px);
+  }
+
+  .feed-header {
+    padding-bottom: 18px;
+  }
+
+  .feed-tools {
+    padding-bottom: 19px;
+  }
+
+  .feed-list {
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+
+}

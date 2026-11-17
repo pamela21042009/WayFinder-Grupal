@@ -1,0 +1,55 @@
+<ion-content class="feed-content" [fullscreen]="true">
+  <main class="feed-page">
+    <header class="feed-header">
+      <a class="feed-brand" routerLink="/home" aria-label="WayFinder, inicio">
+        <img src="assets/brand/W.png" alt="" width="46" height="46" />
+        <span>WAYFINDER</span>
+      </a>
+      <div class="header-actions">
+        <button class="icon-action notification-action" type="button" aria-label="Notificaciones" (click)="showToast('No tienes notificaciones nuevas.')">
+          <ion-icon name="notifications-outline" aria-hidden="true"></ion-icon><span class="notification-dot"></span>
+        </button>
+        <button class="profile-avatar" type="button" aria-label="Abrir perfil" (click)="showToast('La pantalla de perfil estará disponible próximamente.')">MF</button>
+      </div>
+    </header>
+
+    <section class="feed-tools" aria-label="Buscar y filtrar casos">
+      <label class="feed-search">
+        <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+        <input type="search" name="feedSearch" [(ngModel)]="searchTerm" placeholder="Buscar personas, nombres, ubicaciones..." aria-label="Buscar casos y personas" />
+        @if (searchTerm) {
+          <button class="clear-search" type="button" aria-label="Limpiar búsqueda" (click)="searchTerm = ''">×</button>
+        }
+      </label>
+
+      <div class="feed-tabs" role="tablist" aria-label="Orden del feed">
+        @for (tab of tabs; track tab.id) {
+          <button type="button" role="tab" [attr.aria-selected]="activeTab === tab.id" [class.active]="activeTab === tab.id" (click)="selectTab(tab.id)">{{ tab.label }}</button>
+        }
+      </div>
+    </section>
+
+    <section class="feed-list" aria-label="Casos públicos">
+      @for (post of visiblePosts; track post.id) {
+        <app-post-card
+          [post]="post"
+          (reactionToggled)="toggleLike($event)"
+          (shareRequested)="sharePost($event)"
+          (commentsRequested)="showToast('Los comentarios aún no están disponibles.')"
+          (informationRequested)="showToast('El formulario para aportar información aún no está disponible.')"
+          (menuRequested)="showToast('Las opciones de la publicación estarán disponibles próximamente.')"
+        ></app-post-card>
+      } @empty {
+        <div class="feed-empty">
+          <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          <h2>No encontramos casos</h2>
+          <p>Prueba con otro nombre o ubicación.</p>
+        </div>
+      }
+    </section>
+  </main>
+</ion-content>
+
+<app-bottom-navigation activeSection="home" (homeSelected)="selectTab('for-you')"></app-bottom-navigation>
+
+<ion-toast [isOpen]="toastOpen" [message]="toastMessage" duration="2300" position="bottom" (didDismiss)="toastOpen = false"></ion-toast>
